@@ -24,6 +24,10 @@ var isBlink = (isChrome || isOpera) && !!window.CSS;
 //     document.body.innerHTML = 'Use Google Chrome to enable calendar formatting tool. Download it here: https://www.google.com/chrome/browser/desktop/';
 // }
 
+var ampersandGlobalRegEx = new RegExp(/&amp;/, 'g');
+var doubleSpaceGlobalRegEx = new RegExp(/  /, 'g');
+var lineBreakGlobalRegEx = new RegExp(/\r\n?|\n/, 'g');
+
 function selectInputFile(evt) {
     inputFileObj = evt.target.files[0];
     document.getElementById('processButton').disabled = !(inputFileObj && outputFileName !== "");
@@ -317,8 +321,10 @@ function processData(results, file) {
             events[e].wp_post_content = events[e].wp_post_content.toString();
         }
         
-        if (events[e].wp_post_content.trim()) {
-            outputText += (events[e].wp_post_content.trim());
+        var intermediateContent = events[e].wp_post_content.trim();
+        if (intermediateContent) {
+            intermediateContent = intermediateContent.replace(lineBreakGlobalRegEx, ' ');
+            outputText += intermediateContent;
 
             outputText = outputText.trim();
             if (outputText.match(/[!;.?]$/)) {
@@ -439,8 +445,8 @@ function processData(results, file) {
     }
 
     // Final touches on output text
-    outputText = outputText.replace(/&amp;/g, '&');
-    outputText = outputText.replace(/  /g, ' ');
+    outputText = outputText.replace(ampersandGlobalRegEx, '&');
+    outputText = outputText.replace(doubleSpaceGlobalRegEx, ' ');
 
     writeOutpuFile(outputText);
 }
