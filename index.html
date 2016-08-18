@@ -1,0 +1,39 @@
+<html>
+     <head>
+         <meta charset="utf-8"/>
+         <title>Calendar Data Formatter</title>
+         <script type="text/javascript" src="moment.min.js"></script>
+         <script type="text/javascript" src="papaparse.min.js"></script>
+         <script type="text/javascript" src="FileSaver.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="formatter-style.css">
+     </head>
+     <body>
+        <div id="table-wrap">
+          <h2 class="site-identification">Calendar formatter</h2>
+           <table cellspacing="25">
+               <tr>
+                   <td>
+                       <h3 class="label">Input: </h3>
+                   </td>
+                   <td>
+                       <input type="file" id="inputFile" name="inputFile" accept=".csv" />
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       <h3 class="label">Output: </h3>
+                   </td>
+                   <td>
+                       <input type="text" id="outputFile" placeholder="Output File Name" size=30 />
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       <input type="submit" id="processButton" value="Process" onclick="processButtonPressed()">
+                   </td>
+               </tr>
+           </table>
+         </div> <!--table wrap-->
+     </body>
+     <script type="text/javascript" src="calendar_formatter.js"></script>
+ </html>

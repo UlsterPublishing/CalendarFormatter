@@ -1,0 +1,49 @@
+#table-wrap {
+  margin-top: 5em;
+  margin-left: 3em;
+  float: left;
+}
+
+table {
+  font-family: sans-serif;
+  color: #674520;
+  background-color: rgba(211,211,211,0.3);
+  margin: 0 auto;
+}
+
+td {
+  vertical-align: text-top;
+}
+
+body {
+  background-image: url("http://wallpapersbox.ru/_ph/11/195206467.jpg");
+  background-repeat:no-repeat;
+}
+
+.site-identification {
+  font-family: "Georgia", "Geneva", serif;
+  font-style: italic;
+  font-size: 3em;
+  font-weight: lighter;
+  color: #e2c498;
+}
+
+input[type=text] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
