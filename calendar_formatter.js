@@ -304,8 +304,13 @@ function processData(results, file) {
             events[e].wp_post_title = events[e].wp_post_title.toString();
         }
         
-        if (events[e].wp_post_title.trim()) {
-            outputText += ("<strong>" + events[e].wp_post_title.trim() + ".</strong> ");
+        var intermediateTitle = events[e].wp_post_title.trim();
+        if (intermediateTitle && !intermediateTitle.match(/[!.?]$/)) {
+            intermediateTitle += ".";
+        }
+
+        if (intermediateTitle) {
+            outputText += ("<strong>" + intermediateTitle + "</strong> ");
         }
 
         if (events[e].wp_post_content) {
