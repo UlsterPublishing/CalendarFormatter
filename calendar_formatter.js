@@ -440,6 +440,7 @@ function processData(results, file) {
 
     // Final touches on output text
     outputText = outputText.replace(/&amp;/g, '&');
+    outputText = outputText.replace(/  /g, ' ');
 
     writeOutpuFile(outputText);
 }
