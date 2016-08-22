@@ -171,46 +171,58 @@ function processData(results, file) {
                 organizers[data[x].wp_ID] = data[x];
             break;
 
+            case "post":
+                events.push(data[x]);
+            break;
+
             default:
                 console.log("Entry doesn't have supported wp_post_type: " + data[x].wp_post_type);
             break;
         }
     }
 
-    // Now sort the events by date
+    // Now sort the events by date if it's a "tribe_event", if "post", it's sorted before other types
     events.sort(function (a, b) {
-        if (a.cf__EventStartDate && b.cf__EventStartDate) {
-            if (a.cf__EventStartDate < b.cf__EventStartDate) {
-                return -1;
-            } else if (a.cf__EventStartDate > b.cf__EventStartDate) {
-                return 1;
-            } else {
-                if ('allDay' in a && 'allDay' in b) {
-                    if (a.allDay && !b.allDay) {
-                        return -1;
-                    } else if (!a.allDay && b.allDay) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                } else if ('allDay' in a) {
-                    if (a.allDay) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                } else if ('allDay' in b) {
-                    if (b.allDay) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                } else {
-                    return 0;
-                }
-            }
-        } else {
+        if (a.wp_post_type === "post" && b.wp_post_type === "post") {
             return 0;
+        } else if (a.wp_post_type === "post") {
+            return -1;
+        } else if (b.wp_post_type === "post") {
+            return 1;
+        } else {
+            if (a.cf__EventStartDate && b.cf__EventStartDate) {
+                if (a.cf__EventStartDate < b.cf__EventStartDate) {
+                    return -1;
+                } else if (a.cf__EventStartDate > b.cf__EventStartDate) {
+                    return 1;
+                } else {
+                    if ('allDay' in a && 'allDay' in b) {
+                        if (a.allDay && !b.allDay) {
+                            return -1;
+                        } else if (!a.allDay && b.allDay) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    } else if ('allDay' in a) {
+                        if (a.allDay) {
+                            return -1;
+                        } else {
+                            return 0;
+                        }
+                    } else if ('allDay' in b) {
+                        if (b.allDay) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    } else {
+                        return 0;
+                    }
+                }
+            } else {
+                return 0;
+            }
         }
     });
 
@@ -304,11 +316,12 @@ function processData(results, file) {
             }
         }
 
+        var intermediateTitle = null;
         if (events[e].wp_post_title) {
             events[e].wp_post_title = events[e].wp_post_title.toString();
+            intermediateTitle = events[e].wp_post_title.trim();
         }
         
-        var intermediateTitle = events[e].wp_post_title.trim();
         if (intermediateTitle && !intermediateTitle.match(/[!.?]$/)) {
             intermediateTitle += ".";
         }
@@ -317,11 +330,12 @@ function processData(results, file) {
             outputText += ("<strong>" + intermediateTitle + "</strong> ");
         }
 
+        var intermediateContent = null;
         if (events[e].wp_post_content) {
             events[e].wp_post_content = events[e].wp_post_content.toString();
+            intermediateContent = events[e].wp_post_content.trim();
         }
         
-        var intermediateContent = events[e].wp_post_content.trim();
         if (intermediateContent) {
             intermediateContent = intermediateContent.replace(lineBreakGlobalRegEx, ' ');
             outputText += intermediateContent;
