@@ -232,7 +232,7 @@ function processData(results, file) {
     for (var e = 0; e < events.length; e++) {
 
         // Web only listing, don't want to ouput for print
-        if (events[e].cf__ecp_custom_8 && events[e].cf__ecp_custom_8.toLowerCase() === "yes") {
+        if (events[e].cf__ecp_custom_8 && events[e].cf__ecp_custom_8.toLowerCase() === "Web only") {
             continue;
         }
 
