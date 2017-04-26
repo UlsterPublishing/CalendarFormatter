@@ -349,7 +349,9 @@ function processData(results, file) {
         }
 
         if (thisEventVenue) {
-
+            if (thisEventVenue.wp_post_title) {
+                thisEventVenue.cf__VenueVenue = thisEventVenue.wp_post_title.toString();
+            }
             if (thisEventVenue.cf__VenueVenue) {
                 thisEventVenue.cf__VenueVenue = thisEventVenue.cf__VenueVenue.toString();
             }
