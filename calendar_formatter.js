@@ -41,7 +41,7 @@ function outputFileOnKeyUp() {
 function processButtonPressed() {
     var config = {
         delimiter: "",	// auto-detect
-        newline: "\n",	// auto-detect
+        newline: "",	// auto-detect
         header: true,
         dynamicTyping: true,
         preview: 0,
