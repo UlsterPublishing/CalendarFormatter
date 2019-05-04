@@ -362,19 +362,19 @@ function processData(results, file) {
                 thisEventVenue.cf__VenueCity = thisEventVenue.cf__VenueCity.toString();
             }
 
-            if (thisEventVenue.cf__VenueVenue.trim() && thisEventVenue.cf__VenueAddress.trim() && thisEventVenue.cf__VenueCity.trim()) {
+            if (thisEventVenue.cf__VenueVenue && thisEventVenue.cf__VenueVenue.trim() && thisEventVenue.cf__VenueAddress && thisEventVenue.cf__VenueAddress && thisEventVenue.cf__VenueAddress.trim() && thisEventVenue.cf__VenueCity && thisEventVenue.cf__VenueCity.trim()) {
                 outputText += (thisEventVenue.cf__VenueVenue.trim() + ", " + thisEventVenue.cf__VenueAddress.trim() + ", " +  thisEventVenue.cf__VenueCity.trim());
-            } else if (thisEventVenue.cf__VenueVenue.trim() && thisEventVenue.cf__VenueAddress.trim()) {
+            } else if (thisEventVenue.cf__VenueVenue && thisEventVenue.cf__VenueVenue.trim() && thisEventVenue.cf__VenueAddress && thisEventVenue.cf__VenueAddress.trim()) {
                 outputText += (thisEventVenue.cf__VenueVenue.trim() + ", " + thisEventVenue.cf__VenueAddress.trim());
-            } else if (thisEventVenue.cf__VenueAddress.trim() && thisEventVenue.cf__VenueCity.trim()) {
+            } else if (thisEventVenue.cf__VenueAddress && thisEventVenue.cf__VenueAddress.trim() && thisEventVenue.cf__VenueCity && thisEventVenue.cf__VenueCity.trim()) {
                 outputText += (thisEventVenue.cf__VenueAddress.trim() + ", " + thisEventVenue.cf__VenueCity.trim());
-            } else if (thisEventVenue.cf__VenueVenue.trim() && thisEventVenue.cf__VenueCity.trim()) {
+            } else if (thisEventVenue.cf__VenueVenue && thisEventVenue.cf__VenueVenue.trim() && thisEventVenue.cf__VenueCity && thisEventVenue.cf__VenueCity.trim()) {
                 outputText += (thisEventVenue.cf__VenueVenue.trim() + ", " + thisEventVenue.cf__VenueCity.trim());
-            } else if (thisEventVenue.cf__VenueVenue.trim()) {
+            } else if (thisEventVenue.cf__VenueVenue && thisEventVenue.cf__VenueVenue.trim()) {
                 outputText += (thisEventVenue.cf__VenueVenue.trim());
-            } else if (thisEventVenue.cf__VenueAddress.trim()) {
+            } else if (thisEventVenue.cf__VenueAddress && thisEventVenue.cf__VenueAddress.trim()) {
                 outputText += (thisEventVenue.cf__VenueAddress.trim());
-            } else if (thisEventVenue.cf__VenueCity.trim()) {
+            } else if (thisEventVenue.cf__VenueCity && thisEventVenue.cf__VenueCity.trim()) {
                 outputText += (thisEventVenue.cf__VenueCity.trim());
             } else {
                 // Do nothing here
@@ -397,15 +397,15 @@ function processData(results, file) {
             }
         }
 
-        if (thisEventOrganizer && (thisEventOrganizer.cf__OrganizerPhone.trim() || thisEventOrganizer.cf__OrganizerEmail.trim())) {
+        if (thisEventOrganizer && ((thisEventOrganizer.cf__OrganizerPhone && thisEventOrganizer.cf__OrganizerPhone.trim()) || (thisEventOrganizer.cf__OrganizerEmail && thisEventOrganizer.cf__OrganizerEmail.trim()))) {
             outputText += ("Info: ");
 
-            if (thisEventOrganizer.cf__OrganizerPhone.trim()) {
+            if (thisEventOrganizer.cf__OrganizerPhone && thisEventOrganizer.cf__OrganizerPhone.trim()) {
                 outputText += (thisEventOrganizer.cf__OrganizerPhone.trim());
             }
 
-            if (thisEventOrganizer.cf__OrganizerEmail.trim()) {
-                if (thisEventOrganizer.cf__OrganizerPhone.trim()) {
+            if (thisEventOrganizer.cf__OrganizerEmail && thisEventOrganizer.cf__OrganizerEmail.trim()) {
+                if (thisEventOrganizer.cf__OrganizerPhone && thisEventOrganizer.cf__OrganizerPhone.trim()) {
                     outputText += (", ");
                 }
 
@@ -417,8 +417,8 @@ function processData(results, file) {
             events[e].cf__EventURL = events[e].cf__EventURL.toString();
         }
         
-        if (events[e].cf__EventURL.trim()) {
-            if (thisEventOrganizer && (thisEventOrganizer.cf__OrganizerPhone.trim() || thisEventOrganizer.cf__OrganizerEmail.trim())) {
+        if (events[e].cf__EventURL && events[e].cf__EventURL.trim()) {
+            if (thisEventOrganizer && ((thisEventOrganizer.cf__OrganizerPhone && thisEventOrganizer.cf__OrganizerPhone.trim()) || (thisEventOrganizer.cf__OrganizerEmail && thisEventOrganizer.cf__OrganizerEmail.trim()))) {
                 outputText += (", ");
             }
 
